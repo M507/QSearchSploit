@@ -29,7 +29,9 @@ Sorted and clean baby :)
 import sys
 import subprocess
 from datetime import datetime
+from colorama import Fore, Back, Style
 
+colors=1
 debug=0
 j=0
 
@@ -98,10 +100,28 @@ def print_as_wanted(inputs):
         if j:
             pass
         else:
-            print(exploit.get("Date")+" "+exploit.get("Title"))
+            toPrint = exploit.get("Date")+" "+exploit.get("Title")
+            if colors:
+                if "Privilege Escalation" in toPrint or "PE" in toPrint:
+                    print(Fore.GREEN + toPrint),
+                    print(Style.RESET_ALL)
+                elif "(Metasploit)" in toPrint:
+                    print(Fore.BLUE + toPrint),
+                    print(Style.RESET_ALL)
+                elif "Remote Command Execution" in toPrint or "RCE" in toPrint:
+                    print(Fore.RED + toPrint),
+                    print(Style.RESET_ALL)
+                elif "SQL Injection" in toPrint:
+                    print(Fore.LIGHTCYAN_EX + toPrint),
+                    print(Style.RESET_ALL)
+                else:
+                    print(toPrint)
+            else:
+                print(toPrint)
 
 
 def main():
+    out = searchsploit("mysql")
     if len(sys.argv) >= 2:
         out = searchsploit(sys.argv[1])
         print_as_wanted(out)
