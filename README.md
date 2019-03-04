@@ -1,7 +1,7 @@
 # QSearchSploit
 
 Redesigning Searchsploit output style.
-+ The outputs come sorted from new to old. 
++ The outputs are sorted from new to old. 
 + No links or unnecessary information. 
 + Colored outputs.
 
